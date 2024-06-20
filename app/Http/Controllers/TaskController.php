@@ -78,6 +78,13 @@ class TaskController extends Controller
 
         return redirect('/tasks')->with('success', 'Tarea eliminada con éxito');
     }
-    
+    public function complete($id)
+    {
+        $task = Task::findOrFail($id);
+        $task->completed = 1; // Marcar como completada
+        $task->save();
+
+        return redirect('/tasks')->with('success', 'Tarea completada con éxito');
+    }
 }
 
